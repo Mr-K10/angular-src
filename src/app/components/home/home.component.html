@@ -1,11 +1,32 @@
 <br>
-
+<!-- 
 <div class="jumbotron text-center">
-	<h1>Fill The Forms</h1>
+	<h3>Fill The Forms</h3>
 	<div>
 		<a class="btn btn-primary" [routerLink]="['/vacancy/foodform']">Food Form</a>
 		<a class="btn btn-primary" [routerLink]="['/vacancy/medform']">Med Form</a>
 	</div>
-</div>
+</div> -->
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="navbar-brand" >Fill The Forms</div>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
 
-<router-outlet></router-outlet>
+  <div class="collapse navbar-collapse">
+    <ul class="navbar-nav mr-auto">
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="nav-item">
+        <a class="nav-link" [routerLink]="['/vacancy/foodform']">Foodcenter Form</a>
+      </li>
+      <li [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}" class="nav-item">
+        <a class="nav-link" [routerLink]="['/vacancy/medform']">Medcenter Form</a>
+      </li>
+    </ul>
+    
+  </div>
+</nav>
+<div class = "container">
+	<flash-messages></flash-messages>
+
+	<router-outlet></router-outlet>
+</div>

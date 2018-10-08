@@ -1,0 +1,21 @@
+
+<div *ngFor="let obj of dataArray">
+
+  <br>
+
+  <div class="card border-secondary mb-3" style="max-width: 60rem;">
+    <div class="card-header">{{obj.skill}}</div>
+    <div class="card-body row">
+      <div class="col-4">
+          <img style="height: 200px; width: 100%; display: block;" src="{{obj.photo}}" alt="Profile image">
+      </div>
+      <div class="col-8">
+        <h4 class="card-title">{{obj.name}}</h4>
+        <p class="card-text">{{obj.details}}  </p>
+        <hr>
+        <p class="card-text">{{obj.phone}}</p>
+
+    </div>
+    </div>
+  </div>
+</div>

@@ -1,11 +1,14 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-      <h1 class="navbar-brand" >MEAN Auth App</h1>
+      <h1 class="navbar-brand" >Floating-Ravine</h1>
       <!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button> -->
 
       <!-- <div class="collapse navbar-collapse" id="navbarsExampleDefault"> -->
         <ul class="nav navbar-nav">
+          <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+            <a class="nav-link" [routerLink]="['/home']">home</a>
+          </li>
           <li *ngIf="authService.loggedIn()" class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
             <a class="nav-link" [routerLink]="['/vacancy']">Fill Vacancies</a>
           </li>
@@ -15,15 +18,18 @@
           <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
             <a class="nav-link" [routerLink]="['/dashboard']">Dashboard</a>
           </li>
-          <li *ngIf="authService.loggedIn()" class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+          <!-- <li *ngIf="authService.loggedIn()" class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
             <a class="nav-link" [routerLink]="['/map']">Map</a>
-          </li>
+          </li> -->
           <li *ngIf="!authService.loggedIn()" class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
             <a class="nav-link" [routerLink]="['/login']">Officials login</a>
           </li><!-- 
           <li *ngIf="authService.loggedIn()==false" class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
             <a class="nav-link" [routerLink]="['/register']">Register</a>
           </li> -->
+          <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions] = "{exact:true}">
+            <a class="nav-link" [routerLink]="['/developers']">Developers</a>
+          </li>
           <li *ngIf="authService.loggedIn()" class="nav-item" >
             <a class="nav-link" (click)="onLogoutClick()" href="#">Logout</a>
           </li>

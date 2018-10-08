@@ -19,14 +19,18 @@ import { AuthGuard } from './guard/auth.guard';
 import { MapsComponent } from './components/maps/maps.component';
 
 import { DashboardModule } from './components/dashboard/dashboard.module';
-import { HomeModule } from './components/home/home.module'; 
+import { HomeModule } from './components/home/home.module';
+import { DevelopersComponent } from './components/developers/developers.component';
+import { BasicinfoComponent } from './components/basicinfo/basicinfo.component'; 
 
 const appRoutes: Routes = [
-  {path:'', redirectTo: 'dashboard', pathMatch: 'full'},
+  {path:'', redirectTo: 'home', pathMatch: 'full'},
   {path:'register', component: RegisterComponent},
   {path:'login', component: LoginComponent},
   {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]},
-  {path:'map',component: MapsComponent, canActivate:[AuthGuard]}
+  {path:'map',component: MapsComponent, canActivate:[AuthGuard]},
+  {path:'home',component: BasicinfoComponent},
+  {path:'developers',component: DevelopersComponent}
 ]
 
 @NgModule({
@@ -37,6 +41,8 @@ const appRoutes: Routes = [
     RegisterComponent,
     ProfileComponent,
     MapsComponent,
+    DevelopersComponent,
+    BasicinfoComponent,
   ],
   imports: [
     BrowserModule,

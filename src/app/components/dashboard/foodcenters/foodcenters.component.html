@@ -1,3 +1,20 @@
-<h1>
-	Food
-</h1>
+
+<div *ngFor="let obj of dataArray">
+
+  <br>
+
+  <div class="card border-secondary mb-3" style="max-width: 60rem;">
+    <div class="card-header">{{obj.name}}</div>
+    <div class="card-body row">
+    	<div class="col-4">
+        <agm-map [latitude]="obj.location.lat" [longitude]="obj.location.lng" [zoom]="zoom" >
+          <agm-marker [latitude]="obj.location.lat" [longitude]="obj.location.lng"></agm-marker>
+        </agm-map>
+    	</div>
+    	<div class="col-8">
+  	    <h4 class="card-title">{{obj.phone}}</h4>
+  	    <p class="card-text">Food Availability in this center is for {{obj.available}} people.  </p>
+  	</div>
+    </div>
+  </div>
+</div>
