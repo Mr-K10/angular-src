@@ -19,7 +19,7 @@ export class ValidateService {
   }
 
   validateForm(data){
-    if(data.name == undefined || data.phone == undefined || data.location.lat == undefined || data.location.lng || data.available == undefined)
+    if(data.name == undefined || data.phone == undefined || data.available == undefined)
       return false;
     else return true;
   }

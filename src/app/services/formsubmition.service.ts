@@ -12,12 +12,13 @@ export class FormsubmitionService {
   constructor(private http:Http) { }
 
   submitForm(data){
+    console.log("Reached");
     let headers = new Headers();
     this.loadToken();
     headers.append('Authorization',this.authToken);
     headers.append('Content-Type', 'application/json');
-    return this.http.post('http://localhost:3000/',data,{headers:headers})
-    // return this.http.post('',user,{headers:headers})
+    return this.http.post('http://localhost:3000/users/admindata',data,{headers:headers})
+    // return this.http.post('users/admindata',user,{headers:headers})
     .pipe(map(res=>res.json()));
   }
 

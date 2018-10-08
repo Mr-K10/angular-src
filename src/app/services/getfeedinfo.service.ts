@@ -12,8 +12,8 @@ export class GetfeedinfoService {
   getFoodInfo(){
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:3000/',{headers:headers})
-    // return this.http.post('',user,{headers:headers})
+    return this.http.get('http://localhost:3000/users/foodinfo',{headers:headers})
+    // return this.http.post('users/foodinfo',user,{headers:headers})
     .pipe(map(res=>res.json()));
 
   }
@@ -21,8 +21,8 @@ export class GetfeedinfoService {
   getMedInfo(){
   	let headers = new Headers();
     headers.append('Content-Type', 'application/json');
-    return this.http.get('http://localhost:3000/',{headers:headers})
-    // return this.http.post('',user,{headers:headers})
+    return this.http.get('http://localhost:3000/users/medinfo',{headers:headers})
+    // return this.http.post('users/medinfo',user,{headers:headers})
     .pipe(map(res=>res.json()));
 
   }
