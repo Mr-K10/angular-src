@@ -21,7 +21,8 @@ import { MapsComponent } from './components/maps/maps.component';
 import { DashboardModule } from './components/dashboard/dashboard.module';
 import { HomeModule } from './components/home/home.module';
 import { DevelopersComponent } from './components/developers/developers.component';
-import { BasicinfoComponent } from './components/basicinfo/basicinfo.component'; 
+import { BasicinfoComponent } from './components/basicinfo/basicinfo.component';
+import { FormModalComponent } from './components/form-modal/form-modal.component'; 
 
 const appRoutes: Routes = [
   {path:'', redirectTo: 'home', pathMatch: 'full'},
@@ -43,6 +44,7 @@ const appRoutes: Routes = [
     MapsComponent,
     DevelopersComponent,
     BasicinfoComponent,
+    FormModalComponent,
   ],
   imports: [
     BrowserModule,

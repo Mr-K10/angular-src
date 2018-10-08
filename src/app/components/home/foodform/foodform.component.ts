@@ -40,7 +40,8 @@ export class FoodformComponent implements OnInit {
   		this.name,
   		this.phone,
   		this.location,
-  		this.available
+  		this.available,
+      'time'
   	)
     console.log('submiting');
     console.log(data);

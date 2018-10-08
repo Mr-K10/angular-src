@@ -16,19 +16,22 @@ export class MedcentersComponent implements OnInit {
   		'Khusagra\'s Bisleri',
   		'6969696969',
   		new Location(25.2677,82.9913),
-  		69
+  		69,
+      '2'
   	),
   	new Info (
   		'food',
   		'Kailash ke Bhature',
   		'6969696969',
   		new Location(25.2677,83.2213),
-  		69
+  		69,
+      '2'
   	),
   ];
   constructor(private getfeed: GetfeedinfoService) { }
 
   ngOnInit() {
+    this.fillfeeds();
   }
 
   fillfeeds(){

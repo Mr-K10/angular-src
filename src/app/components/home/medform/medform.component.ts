@@ -41,7 +41,8 @@ export class MedformComponent implements OnInit {
       this.name,
       this.phone,
       this.location,
-      this.available
+      this.available,
+      'time'
     )
     console.log("Submiting..." );
     console.log(data);

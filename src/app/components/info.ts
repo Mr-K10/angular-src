@@ -5,6 +5,7 @@ export class Info {
 		public phone: String,
 		public location: Location,
 		public available: Number,
+		public time: String
 		){}
 }
 
