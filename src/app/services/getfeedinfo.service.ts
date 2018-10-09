@@ -15,7 +15,14 @@ export class GetfeedinfoService {
     return this.http.get('http://localhost:3000/users/foodinfo',{headers:headers})
     // return this.http.post('users/foodinfo',user,{headers:headers})
     .pipe(map(res=>res.json()));
+  }
 
+  getInfobyid(id: String){
+    let headers = new Headers();
+    headers.append('Content-Type', 'application/json');
+    return this.http.get('http://localhost:3000/users/info/'+id,{headers:headers})
+    // return this.http.post('users/info',user,{headers:headers})
+    .pipe(map(res=>res.json()));
   }
 
   getMedInfo(){

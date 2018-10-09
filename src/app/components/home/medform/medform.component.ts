@@ -62,6 +62,7 @@ export class MedformComponent implements OnInit {
     this.formsubmitionService.submitForm(data).subscribe(res =>{
        if(res.success){
          this.flashMessage.show(data.type + 'center has been register',{cssClass: 'alert-success', timeout: 3000});
+         this.router.navigate(['/dashboard/medcenters']);
        }
        else{
          this.flashMessage.show('Something went wrong, try again',{cssClass: 'alert-danger', timeout: 3000});

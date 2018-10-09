@@ -26,6 +26,4 @@ export class MedcentersComponent implements OnInit {
       return false;
     });
   }
-
-
 }
