@@ -31,7 +31,8 @@ const appRoutes: Routes = [
   {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]},
   {path:'map',component: MapsComponent, canActivate:[AuthGuard]},
   {path:'home',component: BasicinfoComponent},
-  {path:'developers',component: DevelopersComponent}
+  {path:'developers',component: DevelopersComponent},
+  {path: 'form',component:FormModalComponent}
 ]
 
 @NgModule({

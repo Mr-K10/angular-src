@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Info, Location } from '../../info';
 import { GetfeedinfoService } from '../../../services/getfeedinfo.service';
-// import { clickButton } from '../../form-modal/form-modal.component';
 
 @Component({
   selector: 'app-foodcenters',
@@ -29,7 +28,6 @@ export class FoodcentersComponent implements OnInit {
       '3'
   	),
   ];
-
   constructor( private getfeed: GetfeedinfoService) { }
 
   ngOnInit() {
@@ -45,10 +43,5 @@ export class FoodcentersComponent implements OnInit {
       return false;
     });
   }
-
-  // activateModal(){
-  //   console.log('activateModel');
-  //   clickButton();
-  // }
 
 }
