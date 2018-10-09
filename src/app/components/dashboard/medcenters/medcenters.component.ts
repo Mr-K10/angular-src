@@ -10,24 +10,7 @@ import { GetfeedinfoService } from '../../../services/getfeedinfo.service';
 export class MedcentersComponent implements OnInit {
   zoom: number = 14;
 
-  dataArray = [
-  	new Info (
-  		'food',
-  		'Khusagra\'s Bisleri',
-  		'6969696969',
-  		new Location(25.2677,82.9913),
-  		69,
-      '2'
-  	),
-  	new Info (
-  		'food',
-  		'Kailash ke Bhature',
-  		'6969696969',
-  		new Location(25.2677,83.2213),
-  		69,
-      '2'
-  	),
-  ];
+  dataArray = [{}]
   constructor(private getfeed: GetfeedinfoService) { }
 
   ngOnInit() {
