@@ -28,4 +28,11 @@ export class ValidateService {
     const re = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
     return re.test(phone);    
   }
+
+  validateUserDetails(data){
+    if(data.name == undefined || data.phone == undefined || data.email == undefined)
+      return false;
+    else
+      return true;
+  }
 }

@@ -12,7 +12,6 @@ export class FormsubmitionService {
   constructor(private http:Http) { }
 
   submitForm(data){
-    console.log("Reached");
     let headers = new Headers();
     this.loadToken();
     headers.append('Authorization',this.authToken);
@@ -25,5 +24,14 @@ export class FormsubmitionService {
   loadToken(){
     const token = localStorage.getItem('id_token');
     this.authToken = token;
+  }
+
+  submitUserDetails(data){
+    let headers = new Headers();
+    this.loadToken();
+    headers.append('Content-Type', 'application/json');
+    return this.http.post('http://localhost:3000/users/bookcommodity',data,{headers:headers})
+    // return this.http.post('users/admindata',user,{headers:headers})
+    .pipe(map(res=>res.json()));
   }
 }

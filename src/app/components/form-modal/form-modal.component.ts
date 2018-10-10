@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GetfeedinfoService } from '../../services/getfeedinfo.service';
+import { ValidateService } from '../../services/validate.service';
+import { FlashMessagesService } from 'angular2-flash-messages';
+import { FormsubmitionService } from '../../services/formsubmition.service';
+
 
 @Component({
   selector: 'app-form-modal',
@@ -19,7 +23,11 @@ export class FormModalComponent implements OnInit {
 
   constructor(
   	private route:ActivatedRoute,
-  	private getfeedinfo:GetfeedinfoService
+  	private router: Router,
+  	private getfeedinfo:GetfeedinfoService,
+  	private validate:ValidateService,
+  	private flashMessage:FlashMessagesService,
+  	private formsubmition:FormsubmitionService
   	) { }
 
   ngOnInit() {
@@ -56,7 +64,34 @@ export class FormModalComponent implements OnInit {
 
   	//validation
 
+  	if(!this.validate.validateUserDetails(data)){
+  		this.flashMessage.show('Fill in all fields',{cssClass:'alert-danger',timeout:3000});
+  		return false;  		
+  	}
+
+  	if(!this.validate.validateEmail(data.email)){
+  		this.flashMessage.show('Enter valid E-mail',{cssClass:'alert-danger',timeout:3000});
+  		return false;
+  	}
+
+  	if(!this.validate.validatePhone(data.phone)){
+  		this.flashMessage.show('Enter valid Mobile Number',{cssClass:'alert-danger',timeout:3000});
+  		return false;
+  	}
+
   	//submit
+  	this.formsubmition.submitUserDetails(data).subscribe(data => {
+  		if(data.success){
+  		 	this.flashMessage.show('You are now registered and can login',{cssClass: 'alert-success', timeout: 3000});
+  			this.router.navigate(['/login']);
+  		}
+  		else{
+  		 	this.flashMessage.show('Something went wrong',{cssClass: 'alert-danger', timeout: 3000});
+  			this.router.navigate(['/register']);
+  		}
+  	});
+
+
   }
   
 }
