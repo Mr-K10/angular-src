@@ -10,10 +10,12 @@ import { GetfeedinfoService } from '../../services/getfeedinfo.service';
 export class FormModalComponent implements OnInit {
   id: String;
   private sub: any;
-  obj = {};
 
   foodcenter: String;
   medcenter: String;
+  name: String;
+  phone: String;
+  email: String;
 
   constructor(
   	private route:ActivatedRoute,
@@ -24,11 +26,14 @@ export class FormModalComponent implements OnInit {
     this.sub = this.route.params.subscribe(params => {
        	this.id = params['id']; 
        	this.getfeedinfo.getInfobyid(this.id).subscribe(data => {
-       		this.obj = data;
-       		if(data.type == 'food')
+       		if(data.type === 'food'){
        			localStorage.setItem('food',data.name);
-       		else
+       			this.foodcenter = data.name;
+       		}
+       		else{
        			localStorage.setItem('med',data.name);
+       			this.medcenter = data.name;
+       		}
 
        	});
 
@@ -38,6 +43,20 @@ export class FormModalComponent implements OnInit {
        	if(localStorage.getItem('med')!=null)
        		this.medcenter = localStorage.getItem('med');
     });
+  }
+
+  SubmitForm(){
+  	const data = {
+  		name : this.name,
+  		phone : this.phone,
+  		email : this.email,
+  		medcntr: this.medcenter,
+  		foodcntr: this.foodcenter
+  	};
+
+  	//validation
+
+  	//submit
   }
   
 }
