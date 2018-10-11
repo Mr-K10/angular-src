@@ -96,7 +96,6 @@ export class FormModalComponent implements OnInit,OnChanges {
   		foodcntr: this.foodcenter_id
   	};
 
-  	//validation
 
   	if(!this.validate.validateUserDetails(data)){
   		this.flashMessage.show('Fill in all fields',{cssClass:'alert-danger',timeout:3000});
