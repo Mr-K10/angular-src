@@ -13,7 +13,7 @@ export class GetfeedinfoService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.get('http://localhost:3000/users/foodinfo',{headers:headers})
-    // return this.http.post('users/foodinfo',user,{headers:headers})
+    // return this.http.get('users/foodinfo',{headers:headers})
     .pipe(map(res=>res.json()));
   }
 
@@ -21,7 +21,7 @@ export class GetfeedinfoService {
     let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.get('http://localhost:3000/users/info/'+id,{headers:headers})
-    // return this.http.post('users/info',user,{headers:headers})
+    // return this.http.get('users/info'+id,{headers:headers})
     .pipe(map(res=>res.json()));
   }
 
@@ -29,7 +29,7 @@ export class GetfeedinfoService {
   	let headers = new Headers();
     headers.append('Content-Type', 'application/json');
     return this.http.get('http://localhost:3000/users/medinfo',{headers:headers})
-    // return this.http.post('users/medinfo',user,{headers:headers})
+    // return this.http.get('users/medinfo',{headers:headers})
     .pipe(map(res=>res.json()));
 
   }

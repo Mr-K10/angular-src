@@ -17,7 +17,7 @@ export class FormsubmitionService {
     headers.append('Authorization',this.authToken);
     headers.append('Content-Type', 'application/json');
     return this.http.post('http://localhost:3000/users/admindata',data,{headers:headers})
-    // return this.http.post('users/admindata',user,{headers:headers})
+    // return this.http.post('users/admindata',data,{headers:headers})
     .pipe(map(res=>res.json()));
   }
 
@@ -31,7 +31,7 @@ export class FormsubmitionService {
     this.loadToken();
     headers.append('Content-Type', 'application/json');
     return this.http.post('http://localhost:3000/users/bookcommodity',data,{headers:headers})
-    // return this.http.post('users/admindata',user,{headers:headers})
+    // return this.http.post('users/bookcommodity',data,{headers:headers})
     .pipe(map(res=>res.json()));
   }
 }
