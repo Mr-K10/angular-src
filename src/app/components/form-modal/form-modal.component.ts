@@ -32,7 +32,7 @@ export class FormModalComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.route.params.subscribe(params => {
-       	this.id = params['id']; 
+       	this.id = params['id'];
        	this.getfeedinfo.getInfobyid(this.id).subscribe(data => {
        		if(data.type === 'food'){
        			localStorage.setItem('food',data.name);
@@ -66,7 +66,7 @@ export class FormModalComponent implements OnInit {
 
   	if(!this.validate.validateUserDetails(data)){
   		this.flashMessage.show('Fill in all fields',{cssClass:'alert-danger',timeout:3000});
-  		return false;  		
+  		return false;
   	}
 
   	if(!this.validate.validateEmail(data.email)){
@@ -80,8 +80,10 @@ export class FormModalComponent implements OnInit {
   	}
 
   	//submit
-  	this.formsubmition.submitUserDetails(data).subscribe(data => {
-  		if(data.success){
+  	this.formsubmition.submitUserDetails(data).subscribe(res => {
+    console.log(data);
+    console.log(res);
+  		if(res.success){
   		 	this.flashMessage.show('You are now registered and can login',{cssClass: 'alert-success', timeout: 3000});
   			this.router.navigate(['/login']);
   		}
@@ -93,5 +95,5 @@ export class FormModalComponent implements OnInit {
 
 
   }
-  
+
 }
