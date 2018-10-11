@@ -56,15 +56,17 @@ export class FoodformComponent implements OnInit {
   		this.flashMessage.show('Enter Valid Mobile Number',{cssClass: 'alert-danger', timeout: 3000});
   	  return false;
     }
-  	
+
     //form submition via service
     this.formsubmitionService.submitForm(data).subscribe(res =>{
+    //console.log(res);
        if(res.success){
          this.flashMessage.show(data.type + 'center has been register',{cssClass: 'alert-success', timeout: 3000});
          this.router.navigate(['/dashboard']);
        }
        else{
-         this.flashMessage.show('Something went wrong, try again',{cssClass: 'alert-danger', timeout: 3000});
+         this.flashMessage.show('Something went wrong, try again '+res.msg +", try again",{cssClass: 'alert-danger', timeout: 3000});
+
       }
 
     });
