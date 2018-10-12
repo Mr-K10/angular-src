@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Info, Location } from '../../info';
 import { GetfeedinfoService } from '../../../services/getfeedinfo.service';
+import { CompCommunicationService } from '../../../services/comp-communication.service';
 
 @Component({
   selector: 'app-medcenters',
@@ -11,7 +12,10 @@ export class MedcentersComponent implements OnInit {
   zoom: number = 14;
 
   dataArray = [{}]
-  constructor(private getfeed: GetfeedinfoService) { }
+  constructor(
+    private getfeed: GetfeedinfoService,
+    private compcomm: CompCommunicationService
+    ) { }
 
   ngOnInit() {
     this.fillfeeds();
@@ -25,5 +29,9 @@ export class MedcentersComponent implements OnInit {
       console.log(err);
       return false;
     });
+  }
+
+  setMed(data){
+    this.compcomm.setMed(data);
   }
 }

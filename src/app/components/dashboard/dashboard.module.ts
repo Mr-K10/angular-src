@@ -7,6 +7,7 @@ import { FoodcentersComponent } from './foodcenters/foodcenters.component';
 import { MedcentersComponent } from './medcenters/medcenters.component';
 import { DashnavbarComponent } from './dashnavbar/dashnavbar.component';
 import { DashboardComponent } from './dashboard.component';
+import { FormModalComponent } from './form-modal/form-modal.component'; 
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 
@@ -24,7 +25,8 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
   	DashboardComponent,
   	FoodcentersComponent,
   	MedcentersComponent,
-  	DashnavbarComponent
+  	DashnavbarComponent,
+    FormModalComponent
   ]
 })
 export class DashboardModule { }

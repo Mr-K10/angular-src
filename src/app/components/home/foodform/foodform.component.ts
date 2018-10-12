@@ -64,7 +64,7 @@ export class FoodformComponent implements OnInit {
          this.router.navigate(['/dashboard']);
        }
        else{
-         this.flashMessage.show('Something went wrong, try again',{cssClass: 'alert-danger', timeout: 3000});
+         this.flashMessage.show('Something went wrong, ' + res.err + ' try again',{cssClass: 'alert-danger', timeout: 3000});
       }
 
     });

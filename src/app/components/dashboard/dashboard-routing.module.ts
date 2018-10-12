@@ -5,6 +5,8 @@ import { DashboardComponent } from './dashboard.component'
 import { FoodcentersComponent } from './foodcenters/foodcenters.component';
 import { MedcentersComponent } from './medcenters/medcenters.component';
 import { DashnavbarComponent } from './dashnavbar/dashnavbar.component';
+import { FormModalComponent } from './form-modal/form-modal.component'; 
+
 
 const dashboardRoutes: Routes = [
 	{
@@ -23,6 +25,10 @@ const dashboardRoutes: Routes = [
 				path: '',
 				redirectTo: 'foodcenters',
 				pathMatch: 'full'
+			},
+			{
+				path: 'form',
+				component: FormModalComponent
 			}
 		]
 	}

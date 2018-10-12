@@ -7,14 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  value: String;
   constructor() { }
 
   ngOnInit() {
-  }
-
-  change(val:String){
-  	this.value = val;
   }
 
 }

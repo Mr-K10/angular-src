@@ -10,7 +10,7 @@
         <agm-marker [latitude]="obj.location.lat" [longitude]="obj.location.lng"></agm-marker>
       </agm-map>
       <div class="card-body">
-        <button type="button" class="btn btn-primary " [routerLink]="['/form',obj._id]">Register for food</button>
+        <button type="button" [routerLink]="['/dashboard/form']" class="btn btn-primary " (click)="setFoodType(obj)" >Register for food</button>
       </div>
       <ul class="list-group list-group-flush">
         <li class="list-group-item">Contact No. : {{obj.phone}}</li>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Info, Location } from '../../info';
 import { GetfeedinfoService } from '../../../services/getfeedinfo.service';
+import { CompCommunicationService } from '../../../services/comp-communication.service';
 
 @Component({
   selector: 'app-foodcenters',
@@ -8,11 +9,14 @@ import { GetfeedinfoService } from '../../../services/getfeedinfo.service';
   styleUrls: ['./foodcenters.component.css']
 })
 export class FoodcentersComponent implements OnInit {
-  zoom: number = 14;
+  zoom = 14;
 
   dataArray = [{}]
 
-  constructor( private getfeed: GetfeedinfoService) { }
+  constructor( 
+    private getfeed: GetfeedinfoService,
+    private compComm:CompCommunicationService
+    ) { }
 
   ngOnInit() {
     this.fillfeeds();
@@ -26,6 +30,10 @@ export class FoodcentersComponent implements OnInit {
       console.log(err);
       return false;
     });
+  }
+
+  setFoodType(data){
+    this.compComm.setFood(data);
   }
 
 }

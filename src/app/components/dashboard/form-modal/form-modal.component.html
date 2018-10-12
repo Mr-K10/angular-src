@@ -1,3 +1,4 @@
+<br>
 <form (submit)="SubmitForm()" >
   <fieldset>
     <legend>Enter your details</legend>
@@ -17,8 +18,7 @@
     <div class="form-group">
       <!-- for food  -->
       <label class="control-label">Food Center</label>
-      <input *ngIf="foodcenter" class="form-control" type="text" placeholder="sdfasdf" [(ngModel)]="foodcenter" name="foodcenter" [disabled]="true">
-
+      <input *ngIf="foodcenter" class="form-control" type="text" placeholder="Food center" [(ngModel)]="foodcenter" name="foodcenter" [disabled]="true">
       <div *ngIf="!foodcenter">
         <button  type="button" class="btn btn-outline-primary" [routerLink]="['/dashboard']">Choose Food Center</button>
       </div>
@@ -26,7 +26,7 @@
     <div class="form-group">
       <!-- for Medical room -->
       <label class="control-label">Medical Center</label>
-      <input *ngIf="medcenter" class="form-control" type="text" placeholder="sdfasdf" [(ngModel)]="medcenter" name="medcenter" [disabled]="true">
+      <input *ngIf="medcenter" class="form-control" type="text" placeholder="Medical center" [(ngModel)]="medcenter" name="medcenter" [disabled]="true">
 
       <div *ngIf="!medcenter">
         <button type="button" class="btn btn-outline-primary" [routerLink]="['/dashboard/medcenters']">Choose Medical Center</button> 

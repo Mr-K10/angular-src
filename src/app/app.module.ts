@@ -22,7 +22,6 @@ import { DashboardModule } from './components/dashboard/dashboard.module';
 import { HomeModule } from './components/home/home.module';
 import { DevelopersComponent } from './components/developers/developers.component';
 import { BasicinfoComponent } from './components/basicinfo/basicinfo.component';
-import { FormModalComponent } from './components/form-modal/form-modal.component'; 
 
 const appRoutes: Routes = [
   {path:'', redirectTo: 'home', pathMatch: 'full'},
@@ -31,8 +30,7 @@ const appRoutes: Routes = [
   {path:'profile', component: ProfileComponent, canActivate:[AuthGuard]},
   {path:'map',component: MapsComponent, canActivate:[AuthGuard]},
   {path:'home',component: BasicinfoComponent},
-  {path:'developers',component: DevelopersComponent},
-  {path: 'form/:id',component:FormModalComponent}
+  {path:'developers',component: DevelopersComponent}
 ]
 
 @NgModule({
@@ -44,8 +42,7 @@ const appRoutes: Routes = [
     ProfileComponent,
     MapsComponent,
     DevelopersComponent,
-    BasicinfoComponent,
-    FormModalComponent,
+    BasicinfoComponent
   ],
   imports: [
     BrowserModule,
