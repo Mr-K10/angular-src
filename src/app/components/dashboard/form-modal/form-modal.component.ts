@@ -48,6 +48,16 @@ export class FormModalComponent implements OnInit {
       })
   }
 
+  removefood(){
+    this.foodcenter = null;
+    this.foodcenter_id = null;
+  }
+
+  removemed(){
+    this.medcenter = null;
+    this.medcenter_id = null;
+  }
+
   SubmitForm(){
   	const data = {
   		name : this.name,

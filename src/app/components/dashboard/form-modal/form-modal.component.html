@@ -17,8 +17,13 @@
     </div>
     <div class="form-group">
       <!-- for food  -->
-      <label class="control-label">Food Center</label>
-      <input *ngIf="foodcenter" class="form-control" type="text" placeholder="Food center" [(ngModel)]="foodcenter" name="foodcenter" [disabled]="true">
+      <label class="control-label ">Food Center</label>
+
+      <form class="form-inline my-2 my-lg-0" *ngIf="foodcenter">
+        <input class="form-control mr-sm-2" type="text" placeholder="Food center" [(ngModel)]="foodcenter" name="foodcenter" [disabled]="true">
+        <button  type="button" class="btn btn-outline-secondary my-2 my-sm-0" (click)="removefood()">Remove</button>
+      </form>
+
       <div *ngIf="!foodcenter">
         <button  type="button" class="btn btn-outline-primary" [routerLink]="['/dashboard']">Choose Food Center</button>
       </div>
@@ -26,7 +31,11 @@
     <div class="form-group">
       <!-- for Medical room -->
       <label class="control-label">Medical Center</label>
-      <input *ngIf="medcenter" class="form-control" type="text" placeholder="Medical center" [(ngModel)]="medcenter" name="medcenter" [disabled]="true">
+
+      <form class="form-inline my-2 my-lg-0" *ngIf="medcenter">
+        <input class="form-control mr-sm-2" type="text" placeholder="Medical center" [(ngModel)]="medcenter" name="medcenter" [disabled]="true">
+        <button  type="button" class="btn btn-outline-secondary my-2 my-sm-0" (click)="removemed()">Remove</button>
+      </form>
 
       <div *ngIf="!medcenter">
         <button type="button" class="btn btn-outline-primary" [routerLink]="['/dashboard/medcenters']">Choose Medical Center</button> 

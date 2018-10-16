@@ -1,6 +1,11 @@
 
 <br>
-<div *ngIf="user">
+
+<div class="text-center" *ngIf="show" style="margin-top: 50px">
+  <img src="http://localhost:3000/load.svg">
+</div>
+
+<div *ngIf="user && !show">
 	<h2 class="page-header"> {{user.name}}</h2>
 
 	<ul class="list-group">

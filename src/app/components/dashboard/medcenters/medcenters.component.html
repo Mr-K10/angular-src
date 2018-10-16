@@ -1,5 +1,10 @@
 <br>
-<div class="row" >
+
+<div class="text-center" *ngIf="show" style="margin-top: 50px">
+  <img src="http://localhost:3000/load.svg">
+</div>
+
+<div class="row" *ngIf="!show" >
   <div class="col" *ngFor="let obj of dataArray">
     <div class="card mb-3" style="min-width: 20rem;">
       <div class="card-body">
