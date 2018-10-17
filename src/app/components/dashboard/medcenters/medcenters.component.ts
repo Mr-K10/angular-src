@@ -10,7 +10,9 @@ import { CompCommunicationService } from '../../../services/comp-communication.s
 })
 export class MedcentersComponent implements OnInit {
   zoom: number = 14;
-  show = true;
+  
+  loaderShow = true;
+  errorShow = false;
 
   dataArray = [{}]
   constructor(
@@ -19,17 +21,19 @@ export class MedcentersComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.show = true;
+    this.loaderShow = true;
     this.fillfeeds();
   }
 
   fillfeeds(){
     this.getfeed.getMedInfo().subscribe(infoArray => {
       this.dataArray = infoArray;
-      this.show = false;
+      this.loaderShow = false;
     },
     err => {
       console.log(err);
+      this.errorShow = true;
+      this.loaderShow = false;
       return false;
     });
   }

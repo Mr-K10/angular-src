@@ -10,7 +10,8 @@ import { CompCommunicationService } from '../../../services/comp-communication.s
 })
 export class FoodcentersComponent implements OnInit {
   zoom = 14;
-  show = true;
+  loaderShow = true;
+  errorShow = false;
   dataArray = [{}]
 
   constructor( 
@@ -19,17 +20,19 @@ export class FoodcentersComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.show = true;
+    this.loaderShow = true;
     this.fillfeeds();
   }
 
   fillfeeds(){
     this.getfeed.getFoodInfo().subscribe(infoArray => {
       this.dataArray = infoArray;
-      this.show = false;
+      this.loaderShow = false;
     },
     err => {
       console.log(err);
+      this.loaderShow = false;
+      this.errorShow = true;
       return false;
     });
   }

@@ -1,10 +1,18 @@
 <br>
 
-<div class="text-center" *ngIf="show" style="margin-top: 50px">
-  <img src="http://localhost:3000/load.svg">
+<div class="text-center" *ngIf="loaderShow" style="margin-top: 50px">
+  <svg width="200px" height="200px"  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="xMidYMid" class="lds-eclipse" style="background: none;"><path stroke="none" d="M10 50A40 40 0 0 0 90 50A40 42 0 0 1 10 50" fill="#000000" transform="rotate(5.03496 50 51)"><animateTransform attributeName="transform" type="rotate" calcMode="linear" values="0 50 51;360 50 51" keyTimes="0;1" dur="1s" begin="0s" repeatCount="indefinite"></animateTransform></path></svg>
+
+  <!-- <img src="http//:localhost/static/load.svg"> -->
+
 </div>
 
-<div class="row" *ngIf="!show">
+<div *ngIf="errorShow" class="alert alert-dismissible alert-danger">
+  <button type="button" class="close" data-dismiss="alert">&times;</button>
+  <strong>Oh snap! </strong> <a [routerLink]="['/dashboard/foodcenter']" class="alert-link">Looks like Internet Connection not working! </a> try Reloading.
+</div>
+
+<div class="row" *ngIf="!loaderShow && !errorShow">
   <div class="col" *ngFor="let obj of dataArray">
     <div class="card mb-3" style="min-width: 20rem;">
       <div class="card-body">
