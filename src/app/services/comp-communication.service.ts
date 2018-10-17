@@ -6,20 +6,26 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class CompCommunicationService {
 
-	private foodSubject = new BehaviorSubject<any>(undefined);
-	selectedFood = this.foodSubject.asObservable();
+	public foodSubject = new BehaviorSubject<any>({name: undefined, _id: undefined});
+	// selectedFood = this.foodSubject.asObservable();
 
-	private medSubject = new BehaviorSubject<any>(undefined);
+	private medSubject = new BehaviorSubject<any>({name: undefined, _id: undefined});
 	selectedMed = this.medSubject.asObservable();
 
-  	constructor() { }
+  public userDetails = new BehaviorSubject<any>({name: undefined,phone: undefined, email: undefined});
 
-  	setFood(data){
-  		this.foodSubject.next(data);
-  	}
+	constructor() { }
 
-  	setMed(data){
-  		this.medSubject.next(data);
-  	}
+  saveUserDetails(data){
+    this.userDetails.next(data);
+  }
+
+	setFood(data){
+		this.foodSubject.next(data);
+	}
+
+	setMed(data){
+		this.medSubject.next(data);
+	}
 
 }

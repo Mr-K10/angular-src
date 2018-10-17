@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ValidateService } from '../../../services/validate.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { FormsubmitionService } from '../../../services/formsubmition.service';
@@ -10,8 +10,9 @@ import { Info, Location } from '../../info';
   templateUrl: './foodform.component.html',
   styleUrls: ['./foodform.component.css']
 })
-export class FoodformComponent implements OnInit {
+export class FoodformComponent implements OnInit,OnDestroy {
 
+  sub;
   lat: number = 25.2677;
   lng: number = 82.9913;
   zoom: number = 14;
@@ -32,6 +33,10 @@ export class FoodformComponent implements OnInit {
   	) { }
 
   ngOnInit() {
+  }
+
+  ngOnDestroy()  {
+    // this.sub.unsubscribe();
   }
 
   onFoodformSubmit() {
@@ -58,7 +63,7 @@ export class FoodformComponent implements OnInit {
     }
 
     //form submition via service
-    this.formsubmitionService.submitForm(data).subscribe(res =>{
+    this.sub = this.formsubmitionService.submitForm(data).subscribe(res => {
     //console.log(res);
        if(res.success){
          this.flashMessage.show(data.type + 'center has been register',{cssClass: 'alert-success', timeout: 3000});
@@ -77,6 +82,4 @@ export class FoodformComponent implements OnInit {
        this.location.lng = event.coords.lng;
        console.log(this.location);
   }
-
-
 }

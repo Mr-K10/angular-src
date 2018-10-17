@@ -8,6 +8,8 @@ import { MedcentersComponent } from './medcenters/medcenters.component';
 import { DashnavbarComponent } from './dashnavbar/dashnavbar.component';
 import { DashboardComponent } from './dashboard.component';
 import { FormModalComponent } from './form-modal/form-modal.component'; 
+import { FlashMessagesModule } from 'angular2-flash-messages';
+// import { FlashMessagesModule } from 'angular2-flash-messages';
 
 import { DashboardRoutingModule } from './dashboard-routing.module';
 
@@ -17,6 +19,7 @@ import { DashboardRoutingModule } from './dashboard-routing.module';
     CommonModule,
     FormsModule,
     DashboardRoutingModule,
+    FlashMessagesModule.forRoot(),
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyDOiyfzciD7XuSqr1PvboCg5zWFi5zCcJc'
     })

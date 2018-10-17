@@ -7,6 +7,12 @@ export class ValidateService {
 
   constructor() { }
 
+  validateCenter(data){
+    if(data.foodcntr == null && data.medcntr == null)
+      return false;
+    return true;
+  }
+
   validateRegister(user){
   	if(user.name == undefined || user.email == undefined || user.username == undefined || user.password == undefined)
   		return false;

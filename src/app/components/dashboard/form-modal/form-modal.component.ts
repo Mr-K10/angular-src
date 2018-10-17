@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { GetfeedinfoService } from '../../../services/getfeedinfo.service';
 import { ValidateService } from '../../../services/validate.service';
@@ -11,9 +11,7 @@ import { CompCommunicationService } from '../../../services/comp-communication.s
   templateUrl: './form-modal.component.html',
   styleUrls: ['./form-modal.component.css']
 })
-export class FormModalComponent implements OnInit {
-  // id: string;
-  // private sub: any;
+export class FormModalComponent implements OnInit,OnDestroy {
 
   foodcenter: string;
   medcenter: string;
@@ -35,7 +33,7 @@ export class FormModalComponent implements OnInit {
 
   ngOnInit() {
 
-    this.compComm.selectedFood.subscribe( 
+    this.compComm.foodSubject.subscribe( 
       data => {
         this.foodcenter = data.name;
         this.foodcenter_id = data._id;
@@ -45,15 +43,35 @@ export class FormModalComponent implements OnInit {
       data => {
         this.medcenter = data.name;
         this.medcenter_id = data._id;
-      })
+      });
+
+    this.compComm.userDetails.subscribe(
+      data => {
+        if(data.name != undefined) this.name = data.name;
+        if(data.phone != undefined) this.phone = data.phone;
+        if(data.email != undefined) this.email = data.email; 
+      }
+    )
   }
 
-  removefood(){
+  ngOnDestroy() {
+    const data = {
+      name : this.name,
+      phone : this.phone,
+      email : this.email
+    };
+    this.compComm.saveUserDetails(data);
+
+  }
+
+  removeFood(){
+    this.compComm.setFood({name:undefined,_id:undefined});
     this.foodcenter = null;
     this.foodcenter_id = null;
   }
 
-  removemed(){
+  removeMed(){
+    this.compComm.setMed({name:undefined,_id:undefined});
     this.medcenter = null;
     this.medcenter_id = null;
   }
@@ -68,7 +86,6 @@ export class FormModalComponent implements OnInit {
   	};
 
   	//validation
-
   	if(!this.validate.validateUserDetails(data)){
   		this.flashMessage.show('Fill in all fields',{cssClass:'alert-danger',timeout:3000});
   		return false;  		
@@ -83,6 +100,12 @@ export class FormModalComponent implements OnInit {
   		this.flashMessage.show('Enter valid Mobile Number',{cssClass:'alert-danger',timeout:3000});
   		return false;
   	}
+
+    if(!this.validate.validateCenter(data)){
+      this.flashMessage.show('Select atleast one center to register',{cssClass:'alert-danger',timeout:3000});
+      return false;
+    }
+
 
   	//submit
   	this.formsubmition.submitUserDetails(data).subscribe(res => {
