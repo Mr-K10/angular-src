@@ -19,6 +19,7 @@
 
     <div class="form-group">
       <label>Location</label>
+      <button type="button" (click)="setMarkerToCurrentLocation()" class="btn btn-secondary" style="margin: 20px">Choose Current Location</button>
       <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" (mapClick)="onChooseLocation($event)">
         <agm-marker [latitude]="location.lat" [longitude]="location.lng"></agm-marker>
       </agm-map>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ValidateService } from '../../../services/validate.service';
 import { FlashMessagesService } from 'angular2-flash-messages';
 import { FormsubmitionService } from '../../../services/formsubmition.service';
+import { GeoLocationService } from '../../../services/geo-location.service';
 import { Router } from '@angular/router';
 import { Info, Location } from '../../info';
 
@@ -13,6 +14,8 @@ import { Info, Location } from '../../info';
 })
 export class MedformComponent implements OnInit {
 
+  locationSub;
+  sub;
   lat: number = 25.2677;
   lng: number = 82.9913;
   zoom: number = 14;
@@ -23,17 +26,45 @@ export class MedformComponent implements OnInit {
     lat: this.lat,
     lng: this.lng
   };
+  currLocation = {
+    lat: undefined,
+    lng: undefined    
+  };
   available: Number;
 
   constructor(
   	private validateService: ValidateService,
   	private flashMessage: FlashMessagesService,
     private formsubmitionService: FormsubmitionService,
-    private router: Router
+    private router: Router,
+    private geoLocationService: GeoLocationService
   	) { }
 
   ngOnInit() {
   }
+
+  setMarkerToCurrentLocation(){
+    this.locationSub = this.geoLocationService.getPosition().subscribe( (pos: Position) => {
+      this.currLocation = {
+        lat: +(pos.coords.latitude),
+        lng: +(pos.coords.longitude)
+      }
+      this.location.lng = this.currLocation.lng;
+      this.location.lat = this.currLocation.lat;
+      console.log(pos);
+    },
+    (err)=>{
+      console.log("error" + err);
+    });
+
+    // console.log(this.currLocation.lng != undefined);
+    if(this.currLocation.lng != undefined){
+      this.location.lng = this.currLocation.lng;
+      this.location.lat = this.currLocation.lat;
+      // console.log(this.currLocation);
+    }
+  }
+
 
   onMedformSubmit() {
     const data = new Info(
