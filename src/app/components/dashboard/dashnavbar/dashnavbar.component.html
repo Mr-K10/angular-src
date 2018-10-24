@@ -13,6 +13,11 @@
         <a class="nav-link" [routerLink]="['/dashboard/medcenters']">Medical Centers</a>
       </li>
     </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" [(ngModel)]="searchInput"  (ngModelChange)="nameSearch($event)" name="searchInput" placeholder="Search">
+      <!-- <button class="btn btn-secondary my-2 my-sm-0" (click)="nameSearch()" type="submit">Search</button> -->
+      <button class="btn btn-primary my-sm-0" (click)="locationSearch()" type="submit">Near Me</button>
+    </form>
     
   </div>
 </nav>
