@@ -5,6 +5,8 @@ import { FormsubmitionService } from '../../../services/formsubmition.service';
 import { GeoLocationService } from '../../../services/geo-location.service';
 import { Router } from '@angular/router';
 import { Info, Location } from '../../info';
+import { AuthService } from '../../../services/auth.service';
+
 
 
 @Component({
@@ -13,7 +15,8 @@ import { Info, Location } from '../../info';
   styleUrls: ['./medform.component.css']
 })
 export class MedformComponent implements OnInit {
-
+  admin:Object;
+  admin_id:String;
   locationSub;
   sub;
   lat: number = 25.2677;
@@ -28,19 +31,29 @@ export class MedformComponent implements OnInit {
   };
   currLocation = {
     lat: undefined,
-    lng: undefined    
+    lng: undefined
   };
   available: Number;
 
   constructor(
   	private validateService: ValidateService,
   	private flashMessage: FlashMessagesService,
+    private authService:AuthService,
     private formsubmitionService: FormsubmitionService,
     private router: Router,
     private geoLocationService: GeoLocationService
   	) { }
 
   ngOnInit() {
+    this.authService.getProfile().subscribe(profile => {
+      this.admin = profile.user;
+      this.admin_id=profile.user._id;
+    },
+    err => {
+      console.log(err);
+      return false;
+    });
+//console.log(profile.user);
   }
 
   setMarkerToCurrentLocation(){
@@ -51,7 +64,7 @@ export class MedformComponent implements OnInit {
       }
       this.location.lng = this.currLocation.lng;
       this.location.lat = this.currLocation.lat;
-      console.log(pos);
+      ////console.log(pos);
     },
     (err)=>{
       console.log("error" + err);
@@ -67,16 +80,23 @@ export class MedformComponent implements OnInit {
 
 
   onMedformSubmit() {
+
+
+
+
     const data = new Info(
       'med',
       this.name,
       this.phone,
       this.location,
       this.available,
-      'time'
+      'time',
+      this.admin_id,
+
     )
-    console.log("Submiting..." );
-    console.log(data);
+    //console.log(this.admin_id);
+    //console.log("Submiting..." );
+    console.log(data.admin);
   	//validation via validation service
 
   	if(!this.validateService.validateForm(data)){
@@ -105,7 +125,7 @@ export class MedformComponent implements OnInit {
     onChooseLocation(event){
         this.location.lat = event.coords.lat;
         this.location.lng = event.coords.lng;
-        console.log(this.location);
+        //console.log(this.location);
     }
 
 

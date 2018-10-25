@@ -18,7 +18,7 @@ export class FoodcentersComponent implements OnInit, OnDestroy {
   dataArray = [{name: "sdf",phone: undefined, email: undefined, distance:undefined, location: {lng: undefined, lat: undefined}}]
   searchedArray = [{name: "sdf",phone: undefined, email: undefined}]
 
-  constructor( 
+  constructor(
     private getfeed: GetfeedinfoService,
     private compComm:CompCommunicationService
     ) { }
@@ -51,18 +51,18 @@ export class FoodcentersComponent implements OnInit, OnDestroy {
       this.dataArray.forEach((obj)=>{
         let obj_tmp = obj;
         obj_tmp.distance = this.getDistance(data.lat,data.lng,obj.location.lat,obj.location.lng);
-        
+
         // console.log(obj.location);
         temp.push(obj_tmp);
       });
 
       temp.sort(this.compare);
-      console.table(temp);
+      //console.table(temp);
       this.searchedArray = temp;
     },
     (err) => {
       console.log(err);
-    }); 
+    });
   }
 
   searchByName(){
@@ -87,22 +87,22 @@ export class FoodcentersComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(){
-    this.infoSub.unsubscribe();
-    this.searchByNameSub.unsubscribe();
-    this.searchByLocationSub.unsubscribe();
+    // this.infoSub.unsubscribe();
+    // this.searchByNameSub.unsubscribe();
+    // this.searchByLocationSub.unsubscribe();
     // console.log("unsub")
   }
 
   getDistance(lat1,lon1,lat2,lon2) {
     var R = 6371; // Radius of the earth in km
     var dLat = this.deg2rad(lat2-lat1);  // deg2rad below
-    var dLon = this.deg2rad(lon2-lon1); 
-    var a = 
+    var dLon = this.deg2rad(lon2-lon1);
+    var a =
       Math.sin(dLat/2) * Math.sin(dLat/2) +
-      Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) * 
+      Math.cos(this.deg2rad(lat1)) * Math.cos(this.deg2rad(lat2)) *
       Math.sin(dLon/2) * Math.sin(dLon/2)
-      ; 
-    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a)); 
+      ;
+    var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1-a));
     var d = R * c; // Distance in km
     return d;
   }

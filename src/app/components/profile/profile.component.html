@@ -22,5 +22,28 @@
 		<li class="list-group-item"> Username: {{user.username}}</li>
 		<li class="list-group-item">Email: {{user.email}}</li>
 	</ul>
+  <br>
+  <h4>Center Registered</h4>
+  <div class="col" *ngFor="let obj of centreArray">
+    <div class="card mb-3" style="min-width: 20rem;">
+      <div *ngIf="obj.distance" class="card-header">Distance : {{obj.distance | number: '1.2-3'}} Kms</div>
+      <div class="card-body">
+        <h5 class="card-title">{{obj.name}}</h5>
+        <h6 class="card-subtitle text-muted">Availability: {{obj.available}}</h6>
+        <br>
+        <h6 class="card-subtitle text-muted">type: {{obj.type}}</h6>
+      </div>
+      <agm-map [latitude]="obj.location.lat" [longitude]="obj.location.lng" [zoom]="zoom" >
+        <agm-marker [latitude]="obj.location.lat" [longitude]="obj.location.lng"></agm-marker>
+      </agm-map>
+      <!-- <div class="card-body">
+        <button type="button" class="btn btn-primary " (click)="setMed(obj)" [routerLink]="['/dashboard/form']">Register for medical facility</button>
+      </div> -->
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">Contact No. : {{obj.phone}}</li>
+      </ul>
+
+    </div>
+  </div>
 </div>
 <!-- <p> hello</p> -->

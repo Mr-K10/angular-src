@@ -5,6 +5,8 @@ import { FormsubmitionService } from '../../../services/formsubmition.service';
 import { GeoLocationService } from '../../../services/geo-location.service';
 import { Router } from '@angular/router';
 import { Info, Location } from '../../info';
+import { AuthService } from '../../../services/auth.service';
+
 
 @Component({
   selector: 'app-foodform',
@@ -12,7 +14,8 @@ import { Info, Location } from '../../info';
   styleUrls: ['./foodform.component.css']
 })
 export class FoodformComponent implements OnInit,OnDestroy {
-
+admin:Object;
+admin_id:String;
   locationSub;
   sub;
   lat: number = 25.2677;
@@ -27,7 +30,7 @@ export class FoodformComponent implements OnInit,OnDestroy {
   };
   currLocation = {
     lat: undefined,
-    lng: undefined    
+    lng: undefined
   };
   available: Number;
 
@@ -35,11 +38,22 @@ export class FoodformComponent implements OnInit,OnDestroy {
   	private validateService: ValidateService,
   	private flashMessage: FlashMessagesService,
     private formsubmitionService: FormsubmitionService,
+    private authService:AuthService,
+
     private router: Router,
     private geoLocationService: GeoLocationService
   	) { }
 
   ngOnInit() {
+    this.authService.getProfile().subscribe(profile => {
+      this.admin = profile.user;
+      this.admin_id = profile.user._id;
+      console.log(this.admin_id);
+    },
+    err => {
+      console.log(err);
+      return false;
+    });
   }
 
   ngOnDestroy()  {
@@ -55,7 +69,7 @@ export class FoodformComponent implements OnInit,OnDestroy {
       }
       this.location.lng = this.currLocation.lng;
       this.location.lat = this.currLocation.lat;
-      console.log(pos);
+      //console.log(pos);
     },
     (err)=>{
       console.log("error" + err);
@@ -70,16 +84,19 @@ export class FoodformComponent implements OnInit,OnDestroy {
   }
 
   onFoodformSubmit() {
+
+  //  console.log(this.user+'hahaha');
   	const data = new Info(
   		'food',
   		this.name,
   		this.phone,
   		this.location,
   		this.available,
-      'time'
+      'time',
+      this.admin_id
   	)
-    console.log('submiting');
-    console.log(data);
+     console.log(this.admin_id);
+    // console.log(data);
   	//validation via validation service
 
   	if(!this.validateService.validateForm(data)){
@@ -110,6 +127,6 @@ export class FoodformComponent implements OnInit,OnDestroy {
   onChooseLocation(event){
        this.location.lat = event.coords.lat;
        this.location.lng = event.coords.lng;
-       console.log(this.location);
+       // console.log(this.location);
   }
 }

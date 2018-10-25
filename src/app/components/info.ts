@@ -5,7 +5,8 @@ export class Info {
 		public phone: String,
 		public location: Location,
 		public available: Number,
-		public time: String
+		public time: String,
+		public admin:String
 		){}
 }
 
@@ -14,4 +15,4 @@ export class Location {
 		public lat: Number,
 		public lng: Number
 		) {}
-} 
+}
